@@ -5,7 +5,8 @@
 .intro h2 {
   visibility: hidden;
 }
-.entry {
+
+/* .entry {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
@@ -17,9 +18,9 @@
   width: 400px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
-button#next {
+button {
   background-color: #004D44 !important;
 }
 
