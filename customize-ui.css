@@ -26,3 +26,7 @@ button#next {
 .password-label {
   visibility: hidden
 }
+
+.changeClaims {
+  visibility: hidden;
+}
