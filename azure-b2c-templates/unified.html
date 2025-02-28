@@ -3,13 +3,61 @@
 <html>
 <head>
     
-    <title>Sign up or sign in</title>
+  <title>Islands Online Transport Services Management System - Login</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://agon21.github.io/customize-ui.css" rel="stylesheet" type="text/css" data-preload="true"/> <!-- TODO: REMOVE -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      function makePwdToggler(pwd){
+        // Create show-password checkbox
+        var checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        var id = pwd.id + 'toggler';
+        checkbox.setAttribute('id', id);
+
+        var label = document.createElement('label');
+        label.setAttribute('for', id);
+        label.appendChild(document.createTextNode('show password'));
+
+        var div = document.createElement('div');
+        div.appendChild(checkbox);
+        div.appendChild(label);
+
+        // Add show-password checkbox under password input
+        pwd.insertAdjacentElement('afterend', div);
+
+        // Add toggle password callback
+        function toggle(){
+          if(pwd.type === 'password'){
+            pwd.type = 'text';
+          } else {
+            pwd.type = 'password';
+          }
+        }
+        checkbox.onclick = toggle;
+        // For non-mouse usage
+        checkbox.onkeydown = toggle;
+      }
+
+      function setupPwdTogglers(){
+        var pwdInputs = document.querySelectorAll('input[type=password]');
+        for (var i = 0; i < pwdInputs.length; i++) {
+          makePwdToggler(pwdInputs[i]);
+        }
+      }
+
+      setupPwdTogglers();
+          </script>
+          <script>
+            // Example: Redirect to a different page after login
+            $(document).ready(function () {
+                console.log("Azure B2C Custom Page Loaded - cc Angel");
+            });
+    </script>
     <style id="common">
         @font-face {
             font-family: 'SegoeUI';
