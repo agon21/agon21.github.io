@@ -32,7 +32,7 @@ button:not(#cancel) {
   visibility: hidden;
 }
 
-#attributeList ul li label {
+/* #attributeList ul li label {
   text-align: center !important;
   display: block !important;
 }
@@ -40,4 +40,4 @@ button:not(#cancel) {
 #attributeList ul li .attrEntry .verify .verifyButton {
  margin-right: auto !important;
  display: block !important; 
-}
+} */
