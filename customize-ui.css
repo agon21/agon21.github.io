@@ -20,7 +20,7 @@
   margin-right: auto;
 }
 
-button {
+button:not(#cancel) {
   background-color: #004D44 !important;
 }
 
