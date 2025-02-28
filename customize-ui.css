@@ -1,3 +1,7 @@
+.container {
+  background-color: #004D44;
+}
+
 .intro h2 {
   visibility: hidden;
 }
@@ -15,6 +19,3 @@
   margin-right: auto;
 }
 
-#background_branding_container {
-  background-color: #004D44;
-}
