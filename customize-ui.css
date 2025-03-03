@@ -2,7 +2,7 @@
   background-color: #004D44;
 }
 
-.intro h2 {
+.intro  {
   visibility: hidden;
 }
 
@@ -38,11 +38,11 @@ button:not(#cancel) {
 
 
 
-/* #attributeList ul li label {
+#attributeList ul li label {
   text-align: center !important;
   display: block !important;
 }
-
+/* 
 #attributeList ul li .attrEntry .verify .verifyButton {
  margin-right: auto !important;
  display: block !important; 
