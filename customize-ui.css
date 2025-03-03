@@ -32,6 +32,10 @@ button:not(#cancel) {
   visibility: hidden;
 }
 
+.companyLogo {
+  margin-top: 20px;
+}
+
 /* #attributeList ul li label {
   text-align: center !important;
   display: block !important;
