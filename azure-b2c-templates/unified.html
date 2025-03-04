@@ -9,15 +9,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script defer>
+    <script id="hide-forget-pwd-link" defer>
       document.addEventListener('DOMContentLoaded', function () {
-        const currentUrl = window.location.href;
+        const checkElements = () => {
+          const currentUrl = window.location.href;
     
-        if (currentUrl.includes('/authorize') && currentUrl.includes('B2C_1_SIGNIN')) {
-          document.body.setAttribute('data-page', 'B2C_1_SIGNIN');
-        } else if (currentUrl.includes('/authorize') && currentUrl.includes('B2C_1_PASSWORDRESET')) {
-          document.body.setAttribute('data-page', 'B2C_1_PASSWORDRESET');
-        }
+          // Show forget password link only at first login page
+          if (!(currentUrl.includes('/authorize') && currentUrl.includes('B2C_1_SIGNIN'))) {
+            const forgotPasswordElement = document.getElementById('forgotPassword');
+            console.log('######', forgotPasswordElement);
+            if (forgotPasswordElement) {
+              forgotPasswordElement.style.display = 'none';
+              return; // Stop polling once the element is found and hidden
+            }
+          }
+    
+          // Show Reset password heading only at reset password flow
+          if (currentUrl.includes('/authorize') && currentUrl.includes('B2C_1_PASSWORDRESET')) {
+            const customHeadingElement = document.getElementById('customHeading');
+            console.log('@@@@@@@', customHeadingElement);
+            if (customHeadingElement) {
+              customHeadingElement.style.display = 'block';
+              return; // Stop polling once the element is found and displayed
+            }
+          }
+    
+          // Retry after 500ms if elements are not found
+          setTimeout(checkElements, 500);
+        };
+    
+        checkElements();
       });
     </script>
     <style id="common">
@@ -170,22 +191,6 @@
         margin-bottom: 20px;
         text-align: center;
         display: none;
-      }
-
-      #forgotPassword {
-        display: none;
-      }
-
-      body[data-page="B2C_1_SIGNIN"] #forgotPassword {
-        display: block;
-      }
-
-      #customHeading {
-        display: none;
-      }
-
-      body[data-page="B2C_1_PASSWORDRESET"] #customHeading {
-        display: block;
       }
     </style>
 
