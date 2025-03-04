@@ -9,144 +9,115 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://agon21.github.io/customize-ui.css" rel="stylesheet" type="text/css" data-preload="true"/> <!-- TODO: REWRITE -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- 
-    <script>
-      function makePwdToggler(pwd){
-        // Create show-password checkbox
-        var checkbox = document.createElement('input');
-        checkbox.setAttribute('type', 'checkbox');
-        var id = pwd.id + 'toggler';
-        checkbox.setAttribute('id', id);
+    <script id="hide-forget-pwd-link">
+      document.addEventListener('DOMContentLoaded', function () {
+        const currentUrl = window.location.href;
 
-        var label = document.createElement('label');
-        label.setAttribute('for', id);
-        label.appendChild(document.createTextNode('show password'));
-
-        var div = document.createElement('div');
-        div.appendChild(checkbox);
-        div.appendChild(label);
-
-        // Add show-password checkbox under password input
-        pwd.insertAdjacentElement('afterend', div);
-
-        // Add toggle password callback
-        function toggle(){
-          if(pwd.type === 'password'){
-            pwd.type = 'text';
-          } else {
-            pwd.type = 'password';
-          }
+        // Show forget password link only at first login page
+        if (!(currentUrl.includes('/authorize') && currentUrl.includes('B2C_1_SIGNIN'))) {
+            const forgotPasswordElement = document.getElementById('forgotPassword');
+            if (forgotPasswordElement) {
+                forgotPasswordElement.style.display = 'none';
+            }
         }
-        checkbox.onclick = toggle;
-        // For non-mouse usage
-        checkbox.onkeydown = toggle;
-      }
 
-      function setupPwdTogglers(){
-        var pwdInputs = document.querySelectorAll('input[type=password]');
-        for (var i = 0; i < pwdInputs.length; i++) {
-          makePwdToggler(pwdInputs[i]);
+        // Show Reset password heading only at reset password flow
+        if (currentUrl.includes('/authorize') && currentUrl.includes('B2C_1_PASSWORDRESET')) {
+            const customHeadingElement = document.getElementById('customHeading');
+            if (customHeadingElement) {
+                customHeadingElement.style.display = 'block';
+            }
         }
-      }
-
-      setupPwdTogglers();
-          </script>
-          <script>
-            // Example: Redirect to a different page after login
-            $(document).ready(function () {
-                console.log("Azure B2C Custom Page Loaded");
-            });
+      });
     </script>
-  -->
     <style id="common">
         @font-face {
             font-family: 'SegoeUI';
-            src: url(https://agon21.github.io/azure-b2c-templates/src/fonts/segoeui.WOFF);
+            src: url(https://dev.iots.ie/azure-b2c-templates/src/fonts/segoeui.WOFF);
             font-weight: normal;
         }
         @font-face {
             font-family: 'SegoeUI';
-            src: url(https://agon21.github.io/azure-b2c-templates/src/fonts/segoeui_bold.WOFF);
+            src: url(https://dev.iots.ie/azure-b2c-templates/src/fonts/segoeui_bold.WOFF);
             font-weight: bold;
         }
         #AmazonExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/amazon.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/amazon.svg);
         }
         #AmazonExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/amazon.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/amazon.svg);
         }
         #FacebookExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/facebook.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/facebook.svg);
         }
         #FacebookExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/facebook.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/facebook.svg);
         }
         #GitHubExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/github.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/github.svg);
         }
         #GitHubExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/github.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/github.svg);
         }
         #AppleExchange,#AppleManagedExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/apple.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/apple.svg);
         }
         #AppleExchange:hover,#AppleManagedExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/apple.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/apple.svg);
         }
         #GoogleExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/google.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/google.svg);
         }
         #GoogleExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/google.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/google.svg);
         }
         #LinkedInExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/linkedin.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/linkedin.svg);
         }
         #LinkedInExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/linkedin.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/linkedin.svg);
         }
         #MicrosoftAccountExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/microsoft.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/microsoft.svg);
         }
         #MicrosoftAccountExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/microsoft.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/microsoft.svg);
         }
         #QQExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/qq.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/qq.svg);
         }
         #QQExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/qq.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/qq.svg);
         }
         #TwitterExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/twitter.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/twitter.svg);
         }
         #TwitterExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/twitter.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/twitter.svg);
         }
         #WeChatExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/wechat.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/wechat.svg);
         }
         #WeChatExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/wechat.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/wechat.svg);
         }
         #WeiboExchange {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/weibo.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/weibo.svg);
         }
         #WeiboExchange:hover {
-          background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/weibo.svg);
+          background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/weibo.svg);
         }
         .buttons #cancel:before {
-            content: url(https://agon21.github.io/azure-b2c-templates/src/images/left-arrow.svg);
+            content: url(https://dev.iots.ie/azure-b2c-templates/src/images/left-arrow.svg);
         }
     </style>
     <style id="idpselector">
         #SignInWithLogonNameExchange, #SignUpWithLogonEmailExchange, #SignUpWithLogonNameExchange {
-            background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/colored/local.svg);
+            background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/colored/local.svg);
         }
         #SignInWithLogonNameExchange:hover, #SignUpWithLogonEmailExchange:hover, #SignUpWithLogonNameExchange:hover {
-            background-image: url(https://agon21.github.io/azure-b2c-templates/src/idp_logos/white/local.svg);
+            background-image: url(https://dev.iots.ie/azure-b2c-templates/src/idp_logos/white/local.svg);
         }
         #SignUpWithLogonEmailExchange.text-link {
             background-image: none;
@@ -173,6 +144,46 @@
         /* endinject */
     </style>
 
+    <style id="iots-branding">
+      .container {
+        background-color: #004d44;
+      }
+
+      .intro {
+        visibility: hidden;
+      }
+      
+      .heading {
+        visibility: hidden;
+      }
+
+      button:not(#cancel) {
+        background-color: #004d44 !important;
+      }
+
+      .password-label {
+        visibility: hidden;
+      }
+
+      label {
+        display: none !important;
+      }
+
+      .changeClaims {
+        visibility: hidden;
+      }
+
+      .companyLogo {
+        margin-top: 20px !important;
+      }
+
+      .custom-heading {
+        margin-bottom: 20px;
+        text-align: center;
+        display: none;
+      }
+    </style>
+
 </head>
 <body>
     <div id="background_branding_container"></div>
@@ -181,8 +192,9 @@
             <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <img class="companyLogo" data-tenant-branding-logo="true" src="https://agon21.github.io/azure-b2c-templates/src/images/iots-logo.jpg" alt="Company Logo">
-                        <div id="api" role="main">
+                      <img class="companyLogo" data-tenant-branding-logo="true" src="https://dev.iots.ie/azure-b2c-templates/src/images/iots-logo.jpg" alt="Company Logo">
+                      <h1 class="custom-heading" id="customHeading">Reset Password</h1>
+                      <div id="api" role="main">
                         </div>
                         <a id="forgotPassword" href="https://iotsie.b2clogin.com/iotsie.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_PASSWORDRESET&client_id=0816bcc7-676c-499a-b8eb-abcf0e0540c0&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A5173&scope=openid&response_type=id_token&prompt=login">Forgot your password?</a>
                     </div>
